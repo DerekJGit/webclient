@@ -1,0 +1,14 @@
+{
+  "name": "webclient",
+  "version": "1.0.0",
+  "description": "Dereks http client wrapper around fetch.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "js-cookie": "^3.0.5"
+  }
+}
