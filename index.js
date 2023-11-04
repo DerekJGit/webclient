@@ -23,14 +23,14 @@ class WebClient {
     post(url, body, bearerToken, successCallback) {
         var headers = { 'Content-Type':'application/json' }
         if (bearerToken) { headers['Authorization'] = `Bearer ${bearerToken}` }
-        const options = {method: 'POST', mode: "cors", headers: headers, body: JSON.stringify(body)}
+        const options = {method: 'POST', mode: "cors", credentials: 'include', headers: headers, body: JSON.stringify(body)}
         this.fetch(url, options, successCallback, null);
     }
 
     post(url, body, bearerToken, successCallback, errorCallback) {
         var headers = { 'Content-Type':'application/json' }
         if (bearerToken) { headers['Authorization'] = `Bearer ${bearerToken}` }
-        const options = {method: 'POST', mode: "cors", headers: headers, body: JSON.stringify(body)}
+        const options = {method: 'POST', mode: "cors", credentials: 'include', headers: headers, body: JSON.stringify(body)}
         this.fetch(url, options, successCallback, errorCallback);
     }
 
