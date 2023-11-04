@@ -61,14 +61,21 @@ class WebClient {
                 response.json().then(body => {
                     if (response.status >= 300)
                         errorCallback({status: response.status, body: body});
-                    else
+                    else {
+                        if (response.headers.get("Set-Cookie"))
+                            this.setCookie(response.headers.get("Set-Cookie"));
                         successCallback({status: response.status, body: body});
+                    }
                 })
             }
         })
         .catch(err => {
             console.log("unexpected error occured with http request", err)
         });
+    }
+
+    setCookie(cookie) {
+        Cookies.put(cookie);
     }
 
     getCookie(id) {
