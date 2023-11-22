@@ -62,8 +62,6 @@ class WebClient {
                     if (response.status >= 300)
                         errorCallback({status: response.status, body: body});
                     else {
-                        if (response.headers.get("Set-Cookie"))
-                            this.setCookie(response.headers.get("Set-Cookie"));
                         successCallback({status: response.status, body: body});
                     }
                 })
@@ -74,8 +72,8 @@ class WebClient {
         });
     }
 
-    setCookie(cookie) {
-        Cookies.put(cookie);
+    setCookie(key, value) {
+        Cookies.set(key, value);
     }
 
     getCookie(id) {
