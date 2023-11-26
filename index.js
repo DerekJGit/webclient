@@ -54,6 +54,7 @@ class WebClient {
     handleResponse(response, callback) {
         if (response.headers.get("Content-Length") == 0) {
             callback({status: response.status, body: null})
+            return;
         }
         response
             .json()
