@@ -2,6 +2,8 @@ import Cookies from "js-cookie";
 
 class WebClient {
 
+    unauthorizedRedirect = null;
+
     constructor() {
 
     }
@@ -31,16 +33,13 @@ class WebClient {
         fetch(url, options)
         .then(response => {
             switch (true) {
-                case (response >= 500):
+                case (response.status == 401):
+                    window.location.href = this.unauthorizedRedirect;
+                    break;
+                case (response.status >= 300):
                     this.handleResponse(response, errorCallback);
                     break;
-                case (response >= 400 && response < 500):
-                    this.handleResponse(response, errorCallback);
-                    break;
-                case (response >= 300 && response < 400):
-                    this.handleResponse(response, errorCallback);
-                    break;
-                case (response >= 200 && response < 300):
+                case (response.status >= 200):
                     this.handleResponse(response, successCallback);
                     break;
                 default:
