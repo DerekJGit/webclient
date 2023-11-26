@@ -2,7 +2,7 @@ import Cookies from "js-cookie";
 
 class WebClient {
 
-    unauthorizedRedirect = null;
+    unauthorizedRedirect;
 
     constructor() {
 
@@ -33,7 +33,7 @@ class WebClient {
         fetch(url, options)
         .then(response => {
             switch (true) {
-                case (response.status == 401 && this.unauthorizedRedirect != null):
+                case (response.status == 401 && this.unauthorizedRedirect):
                     window.location.href = this.unauthorizedRedirect;
                     break;
                 case (response.status >= 300):
