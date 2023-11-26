@@ -33,7 +33,7 @@ class WebClient {
         fetch(url, options)
         .then(response => {
             switch (true) {
-                case (response.status == 401):
+                case (response.status == 401 && this.unauthorizedRedirect != null):
                     window.location.href = this.unauthorizedRedirect;
                     break;
                 case (response.status >= 300):
